@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='CSS/main.css'>
+  <script src='main.js'></script>
+</head>
+<body>
+<head>
+  <meta charset="UTF-8" />
+  <title>Buscar Usuário</title>
+  <main>
+  </main>
+</head>
+<body>
+  <div class="container">
+    <h1>Buscar Informações do Usuário</h1>
+    <label for="userId">Digite o ID:</label><br><br>
+    <input type="number" id="userId" min="1" />
+    <button onclick="buscarUsuario()">Buscar</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function buscarUsuario() {
+      const userId = document.getElementById('userId').value;
+      const resultadoDiv = document.getElementById('resultado');
+
+      if (!userId || userId <= 0) {
+        resultadoDiv.textContent = "Por favor, insira um ID válido.";
+        return;
+      }
+
+      resultadoDiv.textContent = "Carregando...";
+
+      fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Usuário não encontrado.");
+          }
+          return response.json();
+        })
+        .then(usuario => {
+          resultadoDiv.innerHTML = `
+            <strong>ID:</strong> ${usuario.id}<br>
+            <strong>Nome:</strong> ${usuario.name}<br>
+            <strong>Email:</strong> ${usuario.email}<br>
+            <strong>Cidade:</strong> ${usuario.address.city}<br>
+            <strong>Empresa:</strong> ${usuario.company.name}
+          `;
+        })
+        .catch(error => {
+          resultadoDiv.textContent = error.message;
+        });
+    }
+  </script>
+</body>
+</html>
+</body>
+</html>

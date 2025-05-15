@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffe6f0; /* rosa claro */
+  color: #8b003b;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+  align-items: center;      /* centraliza verticalmente */
+  padding: 20px;
+}
+
+.container {
+  background-color: #fff0f5;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(255, 102, 178, 0.3);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
